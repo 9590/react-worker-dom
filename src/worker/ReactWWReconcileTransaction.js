@@ -9,6 +9,7 @@
  */
 import CallbackQueue from 'react/lib/CallbackQueue';
 import PooledClass from 'react/lib/PooledClass';
+import ReactUpdateQueue from 'react/lib/ReactUpdateQueue';
 import Transaction from 'react/lib/Transaction';
 
 const ON_READY_QUEUEING = {
@@ -27,13 +28,16 @@ function ReactWWReconcileTransaction() {
 }
 
 const Mixin = {
-  getTransactionWrappers: function() {
+  getTransactionWrappers: function () {
     return [ON_READY_QUEUEING];
   },
-  getReactMountReady: function() {
+  getReactMountReady: function () {
     return this.reactMountReady;
   },
-  destructor: function() {
+  getUpdateQueue: function () {
+    return ReactUpdateQueue;
+  },
+  destructor: function () {
     CallbackQueue.release(this.reactMountReady);
     this.reactMountReady = null;
   }
@@ -42,6 +46,7 @@ const Mixin = {
 Object.assign(
   ReactWWReconcileTransaction.prototype,
   Transaction.Mixin,
+  ReactWWReconcileTransaction,
   Mixin
 );
 

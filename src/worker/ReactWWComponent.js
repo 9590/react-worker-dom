@@ -33,18 +33,7 @@ function extractEventHandlers(props) {
  * @extends ReactMultiChild
  */
 export default class ReactWWComponent {
-    constructor(tag) {
-        this._tag = tag.toLowerCase();
-        this._renderedChildren = null;
-        this._previousStyle = null;
-        this._previousStyleCopy = null;
-        this._rootNodeID = null;
-        this._wrapperState = null;
-        this._topLevelWrapper = null;
-        this._nodeWithLegacyProperties = null;
-    }
-
-    construct(element) {
+    constructor(element) {
         this._currentElement = element;
     }
 
@@ -56,7 +45,7 @@ export default class ReactWWComponent {
      * @param  {ReactReconcileTransaction} transaction
      * @param  {object} context
      */
-    mountComponent(rootID, transaction, context) {
+    mountComponent(transaction, rootID, containerInfo, context) {
         this._rootNodeID = rootID;
 
         const node = this.mountNode(ReactWWIDOperations.getParent(rootID), this._currentElement, transaction);
@@ -96,11 +85,11 @@ export default class ReactWWComponent {
         const node = new WorkerDomNodeStub(this._rootNodeID, type, options);
         parent.addChild(node);
 
-        transaction.getReactMountReady().enqueue(function(){
+        transaction.getReactMountReady().enqueue(function () {
             this.node.addEventHandlers(this.eventHandlers);
         }, {
-            node, eventHandlers
-        });
+                node, eventHandlers
+            });
 
         return node;
     }

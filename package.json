@@ -10,8 +10,10 @@
   },
   "author": "Parashuram <code@nparashuram.com>",
   "license": "BSD-3-Clause",
+  "peerDependencies": {
+    "react": "^15.3.0"
+  },
   "dependencies": {
-    "react": "^0.14.3",
     "invariant": "^2.2.0"
   },
   "devDependencies": {
@@ -21,7 +23,7 @@
     "babel-preset-react": "^6.1.18",
     "babel-preset-stage-0": "^6.1.18",
     "browser-perf": "^1.4.3",
-    "react-dom": "^0.14.3",
+    "react-dom": "^15.3.0",
     "webpack": "^1.12.8",
     "webpack-dev-server": "^1.14.1"
   },

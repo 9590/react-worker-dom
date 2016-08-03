@@ -26,7 +26,7 @@ export default function inject() {
         ReactEventListener
     );
 
-    ReactInjection.EventPluginHub.injectEventPluginOrder(DefaultEventPluginOrder);
+    /*ReactInjection.EventPluginHub.injectEventPluginOrder(DefaultEventPluginOrder);
     ReactInjection.EventPluginHub.injectInstanceHandle(ReactInstanceHandles);
     ReactInjection.EventPluginHub.injectMount(ReactMount);
 
@@ -37,7 +37,7 @@ export default function inject() {
         ChangeEventPlugin: ChangeEventPlugin,
         SelectEventPlugin: SelectEventPlugin,
         BeforeInputEventPlugin: BeforeInputEventPlugin,
-    });
+    });*/
 
     ReactInjection.Updates.injectReconcileTransaction(
         ReactReconcileTransaction
